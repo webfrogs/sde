@@ -133,8 +133,8 @@ let reqCount = 0 //FIXME
 type RequestType = "codecomplete" | "cursorinfo" | "demangle" | "editor.open" | "editor.formattext"
 
 //FIXME generic for future
-function typedResponse(request: string, requestType: RequestType,
-    extraState: any = null): Promise<{}> {
+function typedResponse<T>(request: string, requestType: RequestType,
+    extraState: any = null): Promise<T> {
     server.trace('to write request: ', request)
     const rid = reqCount++
     skProtocolProcess.stdin.write(rid + "\n")
